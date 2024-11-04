@@ -4,6 +4,7 @@
   "exclude": ["src/**/__tests__/*"],
   "allowJs": true,
   "strict": true,
+  "noImplicity": false,
   "compilerOptions": {
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
