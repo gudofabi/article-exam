@@ -32,15 +32,12 @@
 </template>
 
 <script lang="ts" setup>
+import type { Article } from "@/types/interfaces";
 import { useAuthStore } from "@/stores/auth";
 import { computed } from "vue";
 
-const props = defineProps({
-  article: {
-    type: [Object, Array],
-    required: true,
-  },
-});
+// Define props with the Article type
+const props = defineProps<{ article: Article }>();
 
 const authStore = useAuthStore();
 

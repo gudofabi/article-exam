@@ -1,51 +1,21 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-import { computed, reactive, ref } from 'vue';
-
-export interface Person {
-    id: number;
-    firstname: string;
-    lastname: string;
-}
-
-export interface Company {
-    id: number;
-    name: string;
-}
-
-export interface Article {
-    id: number;
-    image: string;
-    title: string;
-    link: string;
-    date: string; // Use 'string' for dates if not using a Date object
-    content: string;
-    status: "For Edit" | "Published"; // Limit status to specific strings
-    writer: Person;
-    editor: Person | null; // Editor can be null
-    company: Company;
-}
+import { computed, ref } from 'vue';
+import type { Article } from '@/types/interfaces';
 
 export const useArticleStore = defineStore('articleStore', () => {
-
     /** States */
-    const articles = ref([]) as unknown as Article[] ;
-    const article = ref('') as unknown as Article;
-    const loading = ref(false)
-    const error = ref('')
-    
+    const articles = ref<Article[]>([]); // Correctly typed as a ref holding an Article array
+    const article = ref<Article | null>(null); // Single article, nullable initially
+    const loading = ref(false);
+    const error = ref('');
+
     /** Computed */
-
-    const getArticles = computed(() => {
-        return articles.value ?? []
-    })
-
-    const getArticle = computed(() => {
-        return article.value ?? null
-    })
+    const getArticles = computed(() => articles.value); // Access articles.value directly
+    const getArticle = computed(() => article.value);
 
     /** Actions */
-    const fetchArticles =  async () => {
+    const fetchArticles = async () => {
         loading.value = true;
         error.value = '';
         try {
@@ -57,46 +27,42 @@ export const useArticleStore = defineStore('articleStore', () => {
         } finally {
             loading.value = false;
         }
-    }
+    };
 
     const createArticle = async (params: any) => {
         try {
-             // Get the current date and format it as YYYY-MM-DD
             const today = new Date();
-            const formattedDate = today.toISOString().split('T')[0]; // Extracts the date part only
+            const formattedDate = today.toISOString().split('T')[0];
 
-            // Add the formatted date to params
             const newParams = { ...params, date: formattedDate, status: 'For Edit' };
             const response = await axios.post(`${import.meta.env.VITE_SERVER_PORT}/articles`, newParams);
-            console.log(response)
             articles.value.push(response.data);
-          } catch (err) {
+        } catch (err) {
             console.error('Error adding article:', err);
-          }
-    }
+        }
+    };
 
     const updateArticle = async (articleId: string | number, params: any) => {
         try {
             const response = await axios.put(`${import.meta.env.VITE_SERVER_PORT}/articles/${articleId}`, params);
             const index = articles.value.findIndex(article => article.id === articleId);
             if (index !== -1) {
-              articles.value[index] = response.data;
+                articles.value[index] = response.data;
             }
-          } catch (err) {
+        } catch (err) {
             console.error('Error updating article:', err);
-          }
-    }
+        }
+    };
 
-    const deleteArticle = async (id: string|number) => {
+    const deleteArticle = async (id: string | number) => {
         try {
             await axios.delete(`${import.meta.env.VITE_SERVER_PORT}/articles/${id}`);
             articles.value = articles.value.filter(article => article.id !== id);
-          } catch (err) {
+        } catch (err) {
             console.error('Error deleting article:', err);
-          }
-    }
+        }
+    };
 
-    // Method to fetch a single article by ID
     const findArticleById = async (id: any) => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_SERVER_PORT}/articles/${id}`);
@@ -114,6 +80,6 @@ export const useArticleStore = defineStore('articleStore', () => {
         createArticle,
         updateArticle,
         deleteArticle,
-        findArticleById
-    }
-})
+        findArticleById,
+    };
+});
