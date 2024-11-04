@@ -1,0 +1,136 @@
+{
+  "articles": [
+    {
+      "id": "1",
+      "image": "https://placehold.co/600x400",
+      "title": "Understanding Vue 3 Composition API",
+      "link": "https://example.com/article1",
+      "date": "2024-10-01",
+      "content": "This article explains the basics of Vue 3 Composition API.",
+      "status": "Published",
+      "writer_id": 1,
+      "editor_id": 2,
+      "company": {
+        "id": 1,
+        "name": "Tech Corp"
+      }
+    },
+    {
+      "id": "2",
+      "image": "https://placehold.co/600x400",
+      "title": "Introduction to Tailwind CSS",
+      "link": "https://example.com/article2",
+      "date": "2024-10-15",
+      "content": "Learn the fundamentals of Tailwind CSS.",
+      "status": "For Edit",
+      "writer_id": 1,
+      "editor_id": null,
+      "company": {
+        "id": 2,
+        "name": "Design Studio"
+      }
+    },
+    {
+      "id": "3",
+      "image": "https://placehold.co/600x400",
+      "title": "Publishing with Vue 3 and Pinia",
+      "link": "https://example.com/article3",
+      "date": "2024-10-20",
+      "content": "A guide to managing state with Pinia in Vue 3.",
+      "status": "Published",
+      "writer_id": 3,
+      "editor_id": 2,
+      "company": {
+        "id": 3,
+        "name": "Web Solutions"
+      }
+    },
+    {
+      "id": "0a2f",
+      "image": null,
+      "title": "Sample Titles",
+      "link": "https://www.letmein.com",
+      "date": "2024-11-03",
+      "content": "Sample content",
+      "status": "Published",
+      "writer_id": 1,
+      "editor_id": null,
+      "company": {
+        "id": 2,
+        "name": "Design Studio"
+      }
+    },
+    {
+      "id": "ef8a",
+      "title": "New Article for me",
+      "link": "https://www.google.com",
+      "image": null,
+      "content": "Sample content for now.",
+      "date": "2024-11-04",
+      "status": "Published",
+      "writer_id": 2,
+      "editor_id": 3
+    },
+    {
+      "id": "b4a6",
+      "title": "dsadsadsa",
+      "link": "https://www.sample.com",
+      "image": null,
+      "content": "This is fir sample",
+      "date": "2024-11-04",
+      "status": "Published"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "firstname": "Alice",
+      "lastname": "Doe",
+      "username": "alice_writer",
+      "password": "password123",
+      "type": "Writer",
+      "status": "Active"
+    },
+    {
+      "id": "2",
+      "firstname": "Bob",
+      "lastname": "Smith",
+      "username": "bob_editor",
+      "password": "editorPass456",
+      "type": "Editor",
+      "status": "Active"
+    },
+    {
+      "id": "3",
+      "firstname": "Charlie",
+      "lastname": "Brown",
+      "username": "charlie_writer",
+      "password": "inactivePass789",
+      "type": "Writer",
+      "status": "Inactive"
+    },
+    {
+      "id": "4",
+      "firstname": "Diana",
+      "lastname": "Prince",
+      "username": "diana_editor",
+      "password": "editorPass101",
+      "type": "Editor",
+      "status": "Active"
+    }
+  ],
+  "companies": [
+    {
+      "id": "1",
+      "name": "Tech Corp"
+    },
+    {
+      "id": "2",
+      "name": "Design Studio"
+    },
+    {
+      "id": "3",
+      "name": "Web Solutions"
+    }
+  ]
+}
