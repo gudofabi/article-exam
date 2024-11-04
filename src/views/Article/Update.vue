@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, reactive } from "vue";
 import { useRoute } from "vue-router";
 
 import ArticleForm from "@/components/ArticleForm.vue";
