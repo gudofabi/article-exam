@@ -49,7 +49,7 @@ export const useArticleStore = defineStore('articleStore', () => {
         loading.value = true;
         error.value = '';
         try {
-            const response = await axios.get('http://localhost:3000/articles');
+            const response = await axios.get(`${import.meta.env.VITE_SERVER_PORT}/articles`);
             articles.value = response.data;
         } catch (err) {
             error.value = 'Failed to fetch articles';
@@ -67,7 +67,7 @@ export const useArticleStore = defineStore('articleStore', () => {
 
             // Add the formatted date to params
             const newParams = { ...params, date: formattedDate, status: 'For Edit' };
-            const response = await axios.post('http://localhost:3000/articles', newParams);
+            const response = await axios.post(`${import.meta.env.VITE_SERVER_PORT}/articles`, newParams);
             console.log(response)
             articles.value.push(response.data);
           } catch (err) {
@@ -77,7 +77,7 @@ export const useArticleStore = defineStore('articleStore', () => {
 
     const updateArticle = async (articleId: string | number, params: any) => {
         try {
-            const response = await axios.put(`http://localhost:3000/articles/${articleId}`, params);
+            const response = await axios.put(`${import.meta.env.VITE_SERVER_PORT}/articles/${articleId}`, params);
             const index = articles.value.findIndex(article => article.id === articleId);
             if (index !== -1) {
               articles.value[index] = response.data;
@@ -89,7 +89,7 @@ export const useArticleStore = defineStore('articleStore', () => {
 
     const deleteArticle = async (id: string|number) => {
         try {
-            await axios.delete(`http://localhost:3000/articles/${id}`);
+            await axios.delete(`${import.meta.env.VITE_SERVER_PORT}/articles/${id}`);
             articles.value = articles.value.filter(article => article.id !== id);
           } catch (err) {
             console.error('Error deleting article:', err);
@@ -99,7 +99,7 @@ export const useArticleStore = defineStore('articleStore', () => {
     // Method to fetch a single article by ID
     const findArticleById = async (id: any) => {
         try {
-            const response = await axios.get(`http://localhost:3000/articles/${id}`);
+            const response = await axios.get(`${import.meta.env.VITE_SERVER_PORT}/articles/${id}`);
             article.value = response.data;
         } catch (err) {
             console.error('Error fetching article by ID:', err);

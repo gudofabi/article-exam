@@ -48,7 +48,7 @@ export const useAuthStore = defineStore('authStore', () => {
     error.value = '';
     try {
       // Fetch users from mock database
-      const response = await axios.get('http://localhost:3000/users');
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_PORT}/users`);
       const users = response.data as User[];
 
       // Find the user with matching username and password

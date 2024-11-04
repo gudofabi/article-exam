@@ -79,6 +79,15 @@
       "content": "This is fir sample",
       "date": "2024-11-04",
       "status": "Published"
+    },
+    {
+      "id": "aa6d",
+      "title": "Updated Article",
+      "link": "https://www.sample.com",
+      "image": null,
+      "content": "dsadsadasdas",
+      "date": "2024-11-04",
+      "status": "For Edit"
     }
   ],
   "users": [
