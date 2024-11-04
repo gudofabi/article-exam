@@ -1,8 +1,8 @@
-import jsonServer from 'json-server';
-import path from 'path';
+import jsonServer from "json-server";
+import path from "path";
 
 const server = jsonServer.create();
-const router = jsonServer.router(path.join(__dirname, '../db.json'));
+const router = jsonServer.router(path.join(__dirname, "../db.json"));
 const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
