@@ -24,7 +24,7 @@
       "content": "Learn the fundamentals of Tailwind CSS.",
       "status": "For Edit",
       "writer_id": 1,
-      "editor_id": null,
+      "editor_id": 1,
       "company": {
         "id": 2,
         "name": "Design Studio"

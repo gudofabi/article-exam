@@ -1,0 +1,8 @@
+{
+    "functions": {
+      "api/json-server.ts": {
+        "memory": 128,
+        "maxDuration": 10
+      }
+    }
+  }
