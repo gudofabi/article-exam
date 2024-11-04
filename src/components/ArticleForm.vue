@@ -81,24 +81,16 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { reactive, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useArticleStore } from "@/stores/articles";
+import type { Article } from "@/types/interfaces";
 
 const articleStore = useArticleStore();
 const router = useRouter();
 
-const props = defineProps({
-  formData: {
-    type: [Object, Array, String],
-    required: true,
-  },
-  forEdit: {
-    type: Boolean,
-    default: false,
-  },
-});
+const props = defineProps<{ formData: Article; forEdit: Boolean }>();
 
 let form = reactive({ ...props.formData });
 const errors = reactive({ title: "", link: "", content: "" });
@@ -113,7 +105,7 @@ watch(
 );
 
 // Upload Image Handler
-function uploadImage(event) {
+function uploadImage(event: any) {
   form.image = event.target.files[0];
 }
 
@@ -129,7 +121,7 @@ function validateForm() {
 }
 
 // URL Validation Helper
-function isValidURL(url) {
+function isValidURL(url: string) {
   try {
     new URL(url);
     return true;

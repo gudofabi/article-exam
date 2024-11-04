@@ -8,7 +8,11 @@
       />
       <div class="p-2">
         <h3 class="text-lg font-bold">{{ article?.title }}</h3>
-        <p class="text-sm text-gray-500">{{ article?.date }}</p>
+
+        <p class="text-sm text-gray-500">Date Created: {{ article?.date }}</p>
+        <p class="text-sm text-gray-500">
+          Writer: {{ article?.writer ? article?.writer?.name : "--" }}
+        </p>
         <span
           class="inline-block mt-2 px-2 py-1 text-xs font-medium text-white rounded-full"
           :class="

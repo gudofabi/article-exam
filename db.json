@@ -72,31 +72,15 @@
       "editor_id": 3
     },
     {
-      "id": "b4a6",
-      "title": "dsadsadsa",
+      "id": "b402",
+      "title": "with writer id",
       "link": "https://www.sample.com",
       "image": null,
-      "content": "This is fir sample",
+      "content": "With writer id",
       "date": "2024-11-04",
-      "status": "Published"
-    },
-    {
-      "id": "aa6d",
-      "title": "Updated Article",
-      "link": "https://www.sample.com",
-      "image": null,
-      "content": "dsadsadasdas",
-      "date": "2024-11-04",
-      "status": "For Edit"
-    },
-    {
-      "id": "eb1a",
-      "title": "dsadsadsa",
-      "link": "https://www.sample.com",
-      "image": null,
-      "content": "This is valdat",
-      "date": "2024-11-04",
-      "status": "For Edit"
+      "status": "For Edit",
+      "writer_id": 1,
+      "editor_id": null
     }
   ],
   "users": [
