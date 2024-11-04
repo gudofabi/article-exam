@@ -21,44 +21,7 @@ export const useAuthStore = defineStore('authStore', () => {
   /** Computed */
   const isAuthenticated = computed(() => {
     return !!user.value || !!localStorage.getItem('user'); // Check if user data exists in localStorage
-  });const createArticle = async (params: any) => {
-    try {
-        const today = new Date();
-        const formattedDate = today.toISOString().split('T')[0];
-
-        // Set writer_id from the current user's ID, editor_id as null initially
-        const newParams = {
-            ...params,
-            date: formattedDate,
-            status: 'For Edit',
-            writer_id: authStore.user?.id, // assuming `user` is an object with `id`
-            editor_id: null, // no editor at creation time
-        };
-
-        const response = await axios.post(`${import.meta.env.VITE_SERVER_PORT}/articles`, newParams);
-        articles.value.push(response.data);
-    } catch (err) {
-        console.error('Error adding article:', err);
-    }
-};
-
-const updateArticle = async (articleId: string | number, params: any) => {
-    try {
-        // Set the editor_id to the current user's ID if they're editing the article
-        const updatedParams = {
-            ...params,
-            editor_id: authStore.user?.id, // assuming the editor is logged in
-        };
-
-        const response = await axios.put(`${import.meta.env.VITE_SERVER_PORT}/articles/${articleId}`, updatedParams);
-        const index = articles.value.findIndex(article => article.id === articleId);
-        if (index !== -1) {
-            articles.value[index] = response.data;
-        }
-    } catch (err) {
-        console.error('Error updating article:', err);
-    }
-};
+  });
 
   const authUser = computed(() => {
     return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') ?? '') :  user.value;

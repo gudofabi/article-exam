@@ -90,7 +90,7 @@ import type { Article } from "@/types/interfaces";
 const articleStore = useArticleStore();
 const router = useRouter();
 
-const props = defineProps<{ formData: Article; forEdit: Boolean }>();
+const props = defineProps<{ formData: Article | any; forEdit: Boolean }>();
 
 let form = reactive({ ...props.formData });
 const errors = reactive({ title: "", link: "", content: "" });

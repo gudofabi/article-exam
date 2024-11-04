@@ -9,14 +9,14 @@ const authStore = useAuthStore();
 
 export const useArticleStore = defineStore('articleStore', () => {
     /** States */
-    const articles = ref<Article[]>([]); // Correctly typed as a ref holding an Article array
-    const article = ref<Article | null>(null); // Single article, nullable initially
+    const articlesList = ref<Article[]>([]); // Correctly typed as a ref holding an Article array
+    const articleData = ref<Article | null>(null); // Single article, nullable initially
     const loading = ref(false);
     const error = ref('');
 
     /** Computed */
-    const getArticles = computed(() => articles.value); // Access articles.value directly
-    const getArticle = computed(() => article.value);
+    const getArticles = computed(() => articlesList.value); // Access articles.value directly
+    const getArticle = computed(() => articleData.value);
 
     /** Actions */
     const fetchArticles = async () => {
@@ -32,7 +32,7 @@ export const useArticleStore = defineStore('articleStore', () => {
             const users = usersResponse.data;
 
             // Map writer and editor details to articles
-            articles.value = articlesResponse.data.map((article: any) => {
+            articlesList.value = articlesResponse.data.map((article: any) => {
                 const writer = users.find((user: any) => user.id == article.writer_id);
                 const editor = users.find((user: any) => user.id == article.editor_id);
 
@@ -65,13 +65,13 @@ export const useArticleStore = defineStore('articleStore', () => {
             };
     
             const response = await axios.post(`${import.meta.env.VITE_SERVER_PORT}/articles`, newParams);
-            articles.value.push(response.data);
+            articlesList.value.push(response.data);
         } catch (err) {
             console.error('Error adding article:', err);
         }
     };
     
-    const updateArticle = async (articleId: string | number, params: any) => {
+    const updateArticle = async (articleId: any, params: any) => {
         try {
             // Set the editor_id to the current user's ID if they're editing the article
             const updatedParams = {
@@ -80,19 +80,19 @@ export const useArticleStore = defineStore('articleStore', () => {
             };
     
             const response = await axios.put(`${import.meta.env.VITE_SERVER_PORT}/articles/${articleId}`, updatedParams);
-            const index = articles.value.findIndex(article => article.id === articleId);
+            const index = articlesList.value.findIndex((article: any) => article.id === articleId);
             if (index !== -1) {
-                articles.value[index] = response.data;
+                articlesList.value[index] = response.data;
             }
         } catch (err) {
             console.error('Error updating article:', err);
         }
     };
 
-    const deleteArticle = async (id: string | number) => {
+    const deleteArticle = async (id: any) => {
         try {
             await axios.delete(`${import.meta.env.VITE_SERVER_PORT}/articles/${id}`);
-            articles.value = articles.value.filter(article => article.id !== id);
+            articlesList.value = articlesList.value.filter((article: any) => article.id !== id);
         } catch (err) {
             console.error('Error deleting article:', err);
         }
@@ -101,7 +101,7 @@ export const useArticleStore = defineStore('articleStore', () => {
     const findArticleById = async (id: any) => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_SERVER_PORT}/articles/${id}`);
-            article.value = response.data;
+            articleData.value = response.data;
         } catch (err) {
             console.error('Error fetching article by ID:', err);
             return null;
