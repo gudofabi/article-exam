@@ -20,14 +20,27 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+## Run the Mock Server
+
+To run the mock server with json-server, use the following command:
 
 ```sh
-npm run build
+json-server --watch db.json --port 3000
+
 ```
+
+## Credentials
+
+Writer:
+username: alice_writer
+password: password123
+
+Editor:
+username: bob_editor
+password: editorPass456
